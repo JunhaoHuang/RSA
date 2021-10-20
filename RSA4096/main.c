@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-12 18:47:44
- * @LastEditTime: 2021-10-20 15:53:49
+ * @LastEditTime: 2021-10-20 16:27:40
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \RSA\RSA4096\RSA_4096_origin_private\main.c
@@ -62,6 +62,8 @@ int private_enc_dec_test()
 	clock_t start,end;
 	double sum=0,sum1=0;
 	int status=0;
+	print_array("key_e1:",&sk.prime_exponent1,sizeof(key_e1));
+	print_array("key_e2:",&sk.prime_exponent2,sizeof(key_e2));
 	for(int i=0;i<count;i++)
 	{
 		generate_rand(input,501*num_test-1);

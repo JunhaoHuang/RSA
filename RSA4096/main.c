@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-12 18:47:44
- * @LastEditTime: 2021-10-18 13:35:58
+ * @LastEditTime: 2021-10-20 15:32:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \RSA\RSA4096\RSA_4096_origin_private\main.c
@@ -30,13 +30,14 @@ void print_array(char *TAG, uint8_t *array, int len)
 }
 
 const int count=10;
+#define num_test 20
 int private_enc_dec_test()
 {
-	uint8_t input[512*2]={0};
+	uint8_t input[512*num_test]={0};
 	rsa_pk_t pk = {0};
 	rsa_sk_t sk = {0};
-	uint8_t  output[512*2]={0};
-	unsigned char msg [512*2]={0};
+	uint8_t  output[512*num_test]={0};
+	unsigned char msg [512*num_test]={0};
 	uint32_t msg_len;
 	uint32_t outputLen;
 	int32_t inputLen;
@@ -56,7 +57,7 @@ int private_enc_dec_test()
 	memcpy(&sk.prime_exponent2 [RSA_MAX_PRIME_LEN-sizeof(key_e2)],   key_e2, sizeof(key_e2));
 	memcpy(&sk.coefficient     [RSA_MAX_PRIME_LEN-sizeof(key_c)],    key_c,  sizeof(key_c));
 
-	generate_rand(input,1000);
+	generate_rand(input,501*num_test-1);
 	inputLen = strlen((const char*)input);
 	// private key encrypt
 	clock_t start,end;

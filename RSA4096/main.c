@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-12 18:47:44
- * @LastEditTime: 2021-10-20 15:32:22
+ * @LastEditTime: 2021-10-20 15:53:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \RSA\RSA4096\RSA_4096_origin_private\main.c
@@ -29,7 +29,7 @@ void print_array(char *TAG, uint8_t *array, int len)
 	printf("\n");
 }
 
-const int count=10;
+const int count=1000;
 #define num_test 20
 int private_enc_dec_test()
 {
@@ -57,14 +57,15 @@ int private_enc_dec_test()
 	memcpy(&sk.prime_exponent2 [RSA_MAX_PRIME_LEN-sizeof(key_e2)],   key_e2, sizeof(key_e2));
 	memcpy(&sk.coefficient     [RSA_MAX_PRIME_LEN-sizeof(key_c)],    key_c,  sizeof(key_c));
 
-	generate_rand(input,501*num_test-1);
-	inputLen = strlen((const char*)input);
+	
 	// private key encrypt
 	clock_t start,end;
 	double sum=0,sum1=0;
 	int status=0;
 	for(int i=0;i<count;i++)
 	{
+		generate_rand(input,501*num_test-1);
+		inputLen = strlen((const char*)input);
 		start=clock();
 		status=rsa_public_encrypt_any_len(output, &outputLen, input, inputLen, &pk);
 		// rsa_private_encrypt(output, &outputLen, input, inputLen, &sk);
@@ -84,9 +85,9 @@ int private_enc_dec_test()
 		sum1+=(double)(end-start)/CLOCKS_PER_SEC;
 	}
 	printf("rsa_public_encrypt_any_len Average time(s): %lf; rsa_private_decrypt_any_len Average time(s): %lf\n",sum/count,sum1/count);
-	print_array("input ",input,inputLen);
-	print_array("rsa_public_encrypt_any_len", output, outputLen);
-	print_array("rsa_public_decrypt_any_len", msg, msg_len);
+	// print_array("input ",input,inputLen);
+	// print_array("rsa_public_encrypt_any_len", output, outputLen);
+	// print_array("rsa_public_decrypt_any_len", msg, msg_len);
 	if(memcmp(input,msg,inputLen)!=0){
 		printf("rsa_public_encrypt_any_len and rsa_private_decrypt_any_len Error\n");
 		return 1;

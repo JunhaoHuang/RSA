@@ -19,4 +19,4 @@ gdb ./debug/main
 # To release:
 make clean && make all/release
 
-./release/main
+./release/main >out.log 2>&1

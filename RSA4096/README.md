@@ -14,7 +14,9 @@ Achieve RSA4096 with C language
 2. 增加对任意数据的RSA加解密支持, 直接使用makefile. 测试testbench, 效率与验证正确性.
 # To debug:
 make clean && make debug
+
 gdb ./debug/main
 # To release:
 make clean && make all/release
+
 ./release/main

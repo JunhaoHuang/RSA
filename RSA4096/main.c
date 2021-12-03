@@ -29,7 +29,7 @@ void print_array(char *TAG, uint8_t *array, int len)
 	printf("\n");
 }
 
-const int count=1000;
+const int count=1;
 #define num_test 20
 int private_enc_dec_test()
 {
@@ -64,6 +64,7 @@ int private_enc_dec_test()
 	int status=0;
 	print_array("key_e1:",&sk.prime_exponent1,sizeof(key_e1));
 	print_array("key_e2:",&sk.prime_exponent2,sizeof(key_e2));
+	print_array("key_m:", &sk.prime_exponent1, sizeof(key_m));
 	for(int i=0;i<count;i++)
 	{
 		generate_rand(input,501*num_test-1);

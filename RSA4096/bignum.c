@@ -229,6 +229,8 @@ void bn_mod_mul(bn_t *a, bn_t *b, bn_t *c, bn_t *d, uint32_t digits)
     memset((uint8_t *)t, 0, sizeof(t));
 }
 
+
+
 void bn_mod_exp(bn_t *a, bn_t *b, bn_t *c, uint32_t cdigits, bn_t *d, uint32_t ddigits)
 {
     bn_t bpower[3][BN_MAX_DIGITS], ci, t[BN_MAX_DIGITS];
